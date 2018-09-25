@@ -1,3 +1,6 @@
+;(global-set-key (kbd "C-c d e") 'dyad-eval-form-at-point)
+;(global-set-key (kbd "C-c d s s") 'dyad-start-server)
+
 (defun dyad-start-server ()
   (interactive)
   (shell-command "rm -rf /tmp/dyad.socket && node ~/dev/dyad-node-repl/server.js &"))
@@ -6,8 +9,8 @@
   (interactive)
   (let* ((current (dyad--current-defun))
          (code (buffer-substring-no-properties (car current) (cadr current))))
-    (dyad--flash-region (car current) (cadr current))
-    (dyad--run-code code)))
+    (dyad--run-code code)
+    (dyad--flash-region (car current) (cadr current))))
 
 (defun dyad-run-code (code)
   (interactive "sCode: ")
