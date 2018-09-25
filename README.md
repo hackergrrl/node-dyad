@@ -14,13 +14,28 @@ promising! If it works it can replace this code.
 This is a quick hack that gets you a minimal working node repl that you can
 also send code to.
 
+## Caveats
+
+- `require` does not work (yet)
+- no autocompletion on the node REPL
+
 ## Usage (emacs)
 
-`dyad-start-server` will start an async server process containing its own node
-environment, including an interactive REPL.
+### `dyad-start-server`
 
-You can then use `dyad-eval-form-at-point` and `dyad-run-code` to run specific
-JS expressions.
+Starts an async server process containing its own node environment, including an interactive REPL on stdin/stdout.
+
+### `dyad-eval-current-defun`
+
+Evaluates the function the current point is in.
+
+### `dyad-eval-buffer`
+
+Evaluates the entire current buffer.
+
+### `dyad-run-code`
+
+Interactive: prompts you for JS code to be evaluated.
 
 ## License
 

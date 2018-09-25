@@ -5,12 +5,17 @@
   (interactive)
   (shell-command "rm -rf /tmp/dyad.socket && node ~/dev/dyad-node-repl/server.js &"))
 
-(defun dyad-eval-form-at-point ()
+(defun dyad-eval-current-defun ()
   (interactive)
   (let* ((current (dyad--current-defun))
          (code (buffer-substring-no-properties (car current) (cadr current))))
     (dyad--run-code code)
     (dyad--flash-region (car current) (cadr current))))
+
+(defun dyad-eval-buffer ()
+  (interactive)
+  (dyad--run-code (buffer-substring-no-properties (point-min) (point-max)))
+  (dyad--flash-region (point-min) (point-max)))
 
 (defun dyad-run-code (code)
   (interactive "sCode: ")
@@ -20,7 +25,7 @@
   (interactive "sCode: ")
   (write-region code nil "/tmp/dyad-code.tmp")
   (string-trim
-   (shell-command-to-string "node ~/dev/dyad-node-repl/client.js < /tmp/dyad-code.tmp")))
+   (shell-command-to-string "node ~/dev/node-dyad/client.js < /tmp/dyad-code.tmp")))
 
 (defun dyad--current-defun ()
   (save-excursion
