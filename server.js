@@ -1,10 +1,8 @@
 var net = require('net')
 var collect = require('collect-stream')
 var lpstream = require('length-prefixed-stream')
-var vm = require('vm')
 
-var sandbox = {}
-vm.createContext(sandbox)
+var geval = eval
 
 var server = net.createServer(function (socket) {
   var decode = lpstream.decode()
@@ -13,15 +11,24 @@ var server = net.createServer(function (socket) {
   encode.pipe(socket)
   decode.on('data', function (buf) {
     var code = buf.toString()
-    var res = vm.runInContext(code, sandbox)
-    console.log('res', typeof res, res)
-    res = String(res)
-    console.log(code, ' -> ', res)
+    var res = String(geval(code))
     encode.write(res)
   })
 })
   
 server.listen('/tmp/dyad.socket', function () {
   console.log('server up on localhost:8321')
-})
 
+  process.stdout.write('NODE> ')
+  process.stdin.on('data', function (buf) {
+    var code = buf.toString()
+    var res
+    try {
+      res = String(geval(code))
+    } catch (e) {
+      res = e.toString()
+    }
+    console.log(res)
+    process.stdout.write('NODE> ')
+  })
+})
