@@ -1,27 +1,24 @@
 var net = require('net')
-var repl = require('repl')
-var through = require('through2')
+var collect = require('collect-stream')
+var lpstream = require('length-prefixed-stream')
+var vm = require('vm')
 
-var input = through()
-var output = through(function (chunk, _, next) {
-  next(null, chunk)
-})
-
-output.pipe(process.stdout)
-
-repl.start({
-  prompt: '> ',
-  input: input,
-  output: output,
-  terminal: false
-})
-
-process.stdin.on('data', function (buf) {
-  input.write(buf)
-})
+var sandbox = {}
+vm.createContext(sandbox)
 
 var server = net.createServer(function (socket) {
-  socket.pipe(input)
+  var decode = lpstream.decode()
+  socket.pipe(decode)
+  var encode = lpstream.encode()
+  encode.pipe(socket)
+  decode.on('data', function (buf) {
+    var code = buf.toString()
+    var res = vm.runInContext(code, sandbox)
+    console.log('res', typeof res, res)
+    res = String(res)
+    console.log(code, ' -> ', res)
+    encode.write(res)
+  })
 })
   
 server.listen('/tmp/dyad.socket', function () {
