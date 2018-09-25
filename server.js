@@ -5,7 +5,12 @@ var through = require('through2')
 var REPL = require('repl')
 
 var input = through()
-var output = through()
+var output = through(function (chunk, enc, next) {
+  if (!taken) process.stdout.write(chunk.toString().replace('!@#$', ''))
+  next(null, chunk)
+})
+
+var taken = false
 
 var repl = REPL.start({
   prompt: '!@#$',
@@ -15,6 +20,7 @@ var repl = REPL.start({
 })
 
 function myEval (code, cb) {
+  taken = true
   var res = ''
   output.on('data', accum)
 
@@ -29,6 +35,7 @@ function myEval (code, cb) {
       res += buf.substring(0, end)
       cb(null, res)
       output.removeListener('data', accum)
+      taken = false
     }
   }
 }
