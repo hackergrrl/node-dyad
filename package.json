@@ -16,7 +16,8 @@
   "keywords": [],
   "dependencies": {
     "collect-stream": "^1.2.1",
-    "length-prefixed-stream": "^1.6.0"
+    "length-prefixed-stream": "^1.6.0",
+    "through2": "^2.0.3"
   },
   "license": "ISC"
 }

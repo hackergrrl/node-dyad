@@ -3,7 +3,7 @@
 
 (defun dyad-start-server ()
   (interactive)
-  (shell-command "rm -rf /tmp/dyad.socket && node ~/dev/dyad-node-repl/server.js &"))
+  (shell-command "rm -rf /tmp/dyad.socket && node ~/dev/node-dyad/server.js &"))
 
 (defun dyad-eval-current-defun ()
   (interactive)

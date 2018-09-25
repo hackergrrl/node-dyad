@@ -16,7 +16,7 @@ also send code to.
 
 ## Caveats
 
-- `require` does not work (yet)
+- you need to hit enter twice on the REPL after it starts for it to start working
 - no autocompletion on the node REPL
 
 ## Usage (emacs)
