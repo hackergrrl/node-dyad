@@ -8,10 +8,8 @@ environment, to test out functions and logic incrementally as I go.
 
 There don't seem to be many options available for Node.JS to do this; I tried
 [SwankJS](https://www.emacswiki.org/emacs/SwankJs) but could not get it
-working.
-
-[nodejs-repl.el](https://github.com/abicky/nodejs-repl.el) looks promising! If
-it works it can replace this code.
+working. [nodejs-repl.el](https://github.com/abicky/nodejs-repl.el) looks
+promising! If it works it can replace this code.
 
 This is a quick hack that gets you a minimal working node repl that you can
 also send code to.
