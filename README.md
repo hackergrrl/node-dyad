@@ -20,8 +20,7 @@ also send code to.
 - you need to hit enter twice on the REPL after it starts for it to start working
 - no autocompletion on the node REPL
 
-![screenshot of emacs running node-dyad](https://github.com/noffle/node-dyad/raw/master/screenshot.jpg)
-
+![screenshot of emacs running node-dyad](https://raw.githubusercontent.com/noffle/node-dyad/master/sceenshot.jpg)
 
 ## Usage (cli)
 
