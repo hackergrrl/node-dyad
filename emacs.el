@@ -3,7 +3,7 @@
 
 (defun dyad-start-server ()
   (interactive)
-  (shell-command "rm -rf /tmp/dyad.socket && node ~/dev/node-dyad/server.js &"))
+  (shell-command "rm -rf /tmp/dyad.socket && dyad-server &"))
 
 (defun dyad-eval-current-defun ()
   (interactive)
@@ -25,7 +25,7 @@
   (interactive "sCode: ")
   (write-region code nil "/tmp/dyad-code.tmp")
   (string-trim
-   (shell-command-to-string "node ~/dev/node-dyad/client.js < /tmp/dyad-code.tmp")))
+   (shell-command-to-string "node dyad-client < /tmp/dyad-code.tmp")))
 
 (defun dyad--current-defun ()
   (save-excursion
