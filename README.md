@@ -20,7 +20,7 @@ also send code to.
 - you need to hit enter twice on the REPL after it starts for it to start working
 - no autocompletion on the node REPL
 
-![screenshot of emacs running node-dyad](./screenshot.jpg)
+![screenshot of emacs running node-dyad](screenshot.jpg)
 
 ## Usage (cli)
 
