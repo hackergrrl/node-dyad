@@ -2,7 +2,7 @@
   "name": "node-dyad",
   "description": "primitive language server for node",
   "author": "Stephen Whitmore <sww@eight.net>",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "bin": {
     "dyad-server": "server.js",
     "dyad-client": "client.js"
