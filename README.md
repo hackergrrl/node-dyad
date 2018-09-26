@@ -25,15 +25,14 @@ also send code to.
 ## Usage (cli)
 
 ```
-git clone 'ssb://%Hu+5CQcuQVYntvDuPmtrdRhBLLHb9ZEcVWLITKAAPeA=.sha256' node-dyad
-cd node-dyad
+npm install --global node-dyad
 ```
 
-### `node server.js`
+### `dyad-server`
 
 Starts a node dyad server. Also acts as an interactive REPL.
 
-### `echo '3 + 4' | node client.js`
+### `echo '3 + 4' | dyad-client`
 
 Reads javascript code on standard input and sends it to the dyad server to be evaluated. Writes its result to standard out.
 

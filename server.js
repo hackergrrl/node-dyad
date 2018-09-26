@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 var net = require('net')
 var collect = require('collect-stream')
 var lpstream = require('length-prefixed-stream')
