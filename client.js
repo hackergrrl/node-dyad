@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
 var net = require('net')
 var collect = require('collect-stream')
