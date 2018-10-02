@@ -1,4 +1,5 @@
-;(global-set-key (kbd "C-c d e") 'dyad-eval-form-at-point)
+;(global-set-key (kbd "C-c d e") 'dyad-eval-current-defun)
+;(global-set-key (kbd "C-c d k") 'dyad-eval-buffer)
 ;(global-set-key (kbd "C-c d s s") 'dyad-start-server)
 
 (defun dyad-start-server ()
@@ -25,7 +26,7 @@
   (interactive "sCode: ")
   (write-region code nil "/tmp/dyad-code.tmp")
   (string-trim
-   (shell-command-to-string "node dyad-client < /tmp/dyad-code.tmp")))
+   (shell-command-to-string "dyad-client < /tmp/dyad-code.tmp")))
 
 (defun dyad--current-defun ()
   (save-excursion
